@@ -32,3 +32,5 @@ _ReSharper*/
 packages/
 project-files/
 scratch/
+/project_files/
+/scratch/
