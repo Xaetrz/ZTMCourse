@@ -1,7 +1,7 @@
 import React from 'react';
-import CardList from './CardList';
-import SearchBox from './SearchBox';
-import Scroll from './Scroll';
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
 import './App.css';
 
 class App extends React.Component {
@@ -21,22 +21,24 @@ class App extends React.Component {
   }
 
   render() {
+    const { robots, searchfield } = this.state;
+
     // Use searchfield to filter out list of robots to display
-    const filteredRobots = this.state.robots.filter((robot) => {
-      return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+    const filteredRobots = robots.filter((robot) => {
+      return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     });
 
     // Display loading if robots file hasn't been loaded yet
-    if (this.state.robots.length === 0) {
+    if (robots.length === 0) {
       return <h1>Loading</h1>
     }
 
     return (
       <div className='tc'>
         <h1 className='f1'>RoboFriends</h1>
-        <SearchBox searchfield={this.state.searchfield} searchChange={this.onSearchChange} />
+        <SearchBox searchfield={searchfield} searchChange={this.onSearchChange} />
         <Scroll>
-          <CardList robots={filteredRobots} searchfield={this.state.searchfield} />
+          <CardList robots={filteredRobots} searchfield={searchfield} />
         </Scroll>
       </div>
     );
